@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Target, Clock, Flag, ChevronRight, Check, X, RotateCcw, TrendingUp, AlertCircle, Award, Calendar, Home, BarChart3, Search, FileText, Lightbulb } from 'lucide-react';
+import { BookOpen, Target, Clock, Flag, ChevronRight, Check, X, RotateCcw, TrendingUp, AlertCircle, Award, Calendar, Home, BarChart3, Search, FileText, Lightbulb, HelpCircle } from 'lucide-react';
 
 // ============================================
 // EXAMENVRAGEN MET CASUS - voor "Vraag ontleden" modus
@@ -36,6 +36,33 @@ Op markt B geldt zonder subsidie een evenwichtsprijs van €25 bij een hoeveelhe
       { text: 'Conjunctuurcyclus', correct: false, explanation: 'Dit is een microeconomische vraag over één markt, niet over de conjunctuur.' }
     ],
 
+    // Vraag-ontleding (stap 1): wat vraagt de vraag?
+    questionBreakdown: {
+      commandOptions: [
+        { text: 'Leg uit', correct: true, explanation: 'Je moet met cijfers onderbouwen én een conclusie trekken (wie draagt het grootste deel).' },
+        { text: 'Bereken', correct: false, explanation: 'Er wordt niet alleen een getal gevraagd, ook een conclusie wie het grootste deel draagt.' },
+        { text: 'Beoordeel', correct: false, explanation: 'Er staat geen bewering die je moet toetsen.' },
+        { text: 'Noem', correct: false, explanation: 'Noem vraagt alleen opsomming — hier moet je redeneren.' }
+      ],
+      subjectOptions: [
+        { text: 'Consumenten vs. producenten op markt A', correct: true, explanation: 'De vraag gaat expliciet over de lastverdeling op markt A.' },
+        { text: 'Markt B (subsidie)', correct: false, explanation: 'Markt B is alleen context, de vraag gaat over markt A.' },
+        { text: 'De overheid', correct: false, explanation: 'De overheid heft, maar is niet de partij waarvan de last berekend wordt.' }
+      ],
+      subQuestions: [
+        { text: 'Hoeveel van de heffing dragen de consumenten?', correct: true, explanation: 'Nodig om de lastverdeling te bepalen.' },
+        { text: 'Hoeveel van de heffing dragen de producenten?', correct: true, explanation: 'Nodig om de vergelijking te maken.' },
+        { text: 'Wie draagt het grootste deel?', correct: true, explanation: 'Kernvraag — expliciet in de vraagtekst.' },
+        { text: 'Wat gebeurt met de hoeveelheid op markt A?', correct: false, explanation: 'Wordt niet gevraagd; gaat niet over lastverdeling.' },
+        { text: 'Is het beleid effectief voor CO₂-reductie?', correct: false, explanation: 'Niet gevraagd — andere vraag dan lastverdeling.' }
+      ],
+      answerTypeOptions: [
+        { text: 'Berekening + conclusie wie grootste deel draagt', correct: true, explanation: 'Cijfers onderbouwen de conclusie.' },
+        { text: 'Alleen een getal', correct: false, explanation: 'Er moet een conclusie uit volgen.' },
+        { text: 'Ja/nee met onderbouwing', correct: false, explanation: 'Er is geen bewering die getoetst wordt.' }
+      ]
+    },
+
     // Het uiteindelijke antwoord
     modelAnswer: 'Van de heffing van €10 dragen de consumenten €6 (de consumentenprijs stijgt van €40 naar €46) en dragen de producenten €4 (zij ontvangen netto €46 − €10 = €36, dus €4 minder dan de oorspronkelijke €40). De consumenten dragen dus het grootste deel. Dit betekent dat het aanbod op deze markt elastischer is dan de vraag: de partij met de minst elastische curve draagt de grootste last.',
     keyPoints: ['consumenten dragen €6 (46-40)', 'producenten dragen €4 (40-36)', 'consumenten dragen grootste deel', 'conclusie: vraag minder elastisch dan aanbod']
@@ -69,6 +96,31 @@ Syrap zelf behaalt bij lagere prijs een winst van €6 miljoen, bij kartelprijs 
       { text: 'Monetair beleid', correct: false, explanation: 'Niet relevant — het gaat over marktgedrag op een vismarkt.' }
     ],
 
+    questionBreakdown: {
+      commandOptions: [
+        { text: 'Leg uit', correct: true, explanation: 'Je moet redeneren over Syraps keuze en het gevolg — geen berekening, geen oordeel.' },
+        { text: 'Bereken', correct: false, explanation: 'Er wordt geen getal gevraagd, alleen een keuze en gevolg.' },
+        { text: 'Beoordeel', correct: false, explanation: 'Geen bewering om te toetsen.' },
+        { text: 'Noem', correct: false, explanation: 'Alleen benoemen is niet genoeg — je moet uitleggen waarom.' }
+      ],
+      subjectOptions: [
+        { text: 'Syrap', correct: true, explanation: 'De vraag stelt expliciet "welke keuze Syrap zal maken".' },
+        { text: 'Het kartel (Dirdam + Nednol)', correct: false, explanation: 'Het kartel is gevolg van Syraps keuze, niet de keuzemaker.' },
+        { text: 'De consument', correct: false, explanation: 'Consumenten komen in de casus niet als beslisser voor.' }
+      ],
+      subQuestions: [
+        { text: 'Welke keuze maakt Syrap rationeel?', correct: true, explanation: 'Eerste deel van de vraag.' },
+        { text: 'Wat betekent die keuze voor de stabiliteit van het kartel?', correct: true, explanation: 'Tweede deel, ná "en wat dit betekent voor...".' },
+        { text: 'Hoe hoog is de winst van Dirdam?', correct: false, explanation: 'Wordt niet expliciet gevraagd.' },
+        { text: 'Waarom vormen Dirdam en Nednol een kartel?', correct: false, explanation: 'Achtergrond, niet de vraag.' }
+      ],
+      answerTypeOptions: [
+        { text: 'Redenering + conclusie in twee delen', correct: true, explanation: 'De vraag bestaat uit twee deelvragen, dus het antwoord ook.' },
+        { text: 'Alleen een berekening', correct: false, explanation: 'Commandowoord is "leg uit", niet "bereken".' },
+        { text: 'Ja/nee met onderbouwing', correct: false, explanation: 'Er wordt geen bewering getoetst.' }
+      ]
+    },
+
     modelAnswer: 'Syrap kiest rationeel voor de lagere prijs. Bij lagere prijs is de winst €6 miljoen, bij kartelprijs €5 miljoen en zonder toetreding €0. Lagere prijs geeft altijd de hoogste winst voor Syrap — dit is dus Syraps dominante strategie. Hierdoor wordt het kartel minder stabiel: de kartelleden Dirdam en Nednol zien hun winst dalen van €10 naar €4 miljoen. De komst van een nieuwe toetreder die onder de kartelprijs duikt ondergraaft de kartelafspraak, omdat het kartel de hoge prijs niet meer kan handhaven.',
     keyPoints: ['Syrap kiest lagere prijs (€6 > €5 > €0)', 'dominante strategie', 'kartel wordt instabiel', 'winst kartelleden daalt van €10 naar €4 mln']
   },
@@ -98,6 +150,32 @@ De minister van Economische Zaken beweert dat "de welvaart in ons land de afgelo
       { text: 'Lorenz-curve en Gini-coëfficiënt', correct: false, explanation: 'Dit gaat over inkomensverdeling, niet over welvaartsgroei.' },
       { text: 'Multipliereffect', correct: false, explanation: 'Niet relevant — geen overheidsuitgaven of conjunctuuranalyse.' }
     ],
+
+    questionBreakdown: {
+      commandOptions: [
+        { text: 'Beoordeel (met berekening)', correct: true, explanation: 'Je moet de bewering van de minister toetsen én met cijfers onderbouwen.' },
+        { text: 'Alleen berekenen', correct: false, explanation: 'Je moet ook een oordeel vellen over de bewering — niet alleen cijfers.' },
+        { text: 'Leg uit', correct: false, explanation: 'Er wordt geen uitleg van een mechanisme gevraagd, maar een oordeel.' },
+        { text: 'Voorspel', correct: false, explanation: 'Geen voorspelling gevraagd.' }
+      ],
+      subjectOptions: [
+        { text: 'De bewering van de minister over welvaartsstijging', correct: true, explanation: 'De vraag toetst expliciet deze bewering.' },
+        { text: 'De inflatie in land Eco', correct: false, explanation: 'Inflatie is een middel voor de berekening, niet het onderwerp.' },
+        { text: 'De bevolkingsgroei', correct: false, explanation: 'Ook een middel, niet het onderwerp zelf.' }
+      ],
+      subQuestions: [
+        { text: 'Klopt de bewering dat welvaart met 16% is gestegen?', correct: true, explanation: 'De kernvraag die beoordeeld moet worden.' },
+        { text: 'Bereken het reële bbp per hoofd in 2020', correct: true, explanation: 'Expliciet gevraagd in de vraagtekst.' },
+        { text: 'Bereken het reële bbp per hoofd in 2023', correct: true, explanation: 'Expliciet gevraagd in de vraagtekst.' },
+        { text: 'Hoeveel mensen wonen in Eco?', correct: false, explanation: 'Dat is een gegeven, geen deelvraag.' },
+        { text: 'Wat is de oorzaak van de inflatie?', correct: false, explanation: 'Wordt niet gevraagd.' }
+      ],
+      answerTypeOptions: [
+        { text: 'Berekening + oordeel over de bewering', correct: true, explanation: 'Cijfers onderbouwen het eindoordeel.' },
+        { text: 'Alleen berekening zonder oordeel', correct: false, explanation: 'De bewering moet expliciet getoetst worden.' },
+        { text: 'Ja/nee zonder cijfers', correct: false, explanation: 'De vraag vraagt expliciet om een berekening.' }
+      ]
+    },
 
     modelAnswer: 'Reëel bbp 2023 = €580 mld × (100/115) = €504,3 mld (in prijzen van 2020). Reëel bbp per hoofd 2020 = 500/10 = €50.000. Reëel bbp per hoofd 2023 = 504,3/10,5 = €48.029. Het reële bbp per hoofd is dus gedaald met ongeveer 3,9%. De bewering van de minister klopt niet: de nominale groei van 16% is volledig verklaarbaar door prijsstijgingen (15%) en bevolkingsgroei (5%). De materiële welvaart per persoon is juist licht gedaald.',
     keyPoints: ['reëel bbp 2023 = 580 × 100/115 = €504 mld', 'reëel bbp per hoofd 2020: €50.000', 'reëel bbp per hoofd 2023: €48.029', 'lichte DALING per hoofd', 'bewering minister onjuist']
@@ -131,6 +209,32 @@ De centrale bank verhoogt de beleidsrente van 2% naar 4%.`,
       { text: 'Marktvormen / oligopolie', correct: false, explanation: 'Microeconomisch; de vraag is macro.' }
     ],
 
+    questionBreakdown: {
+      commandOptions: [
+        { text: 'Leg uit', correct: true, explanation: 'Je moet een mechanisme redeneren via het IS-MB-GA model.' },
+        { text: 'Bereken', correct: false, explanation: 'Er wordt geen getal gevraagd.' },
+        { text: 'Beoordeel', correct: false, explanation: 'Geen bewering om te toetsen.' },
+        { text: 'Noem', correct: false, explanation: 'Opsomming is niet genoeg — je moet een redenering geven.' }
+      ],
+      subjectOptions: [
+        { text: 'Output Y en inflatie π', correct: true, explanation: 'De vraag noemt expliciet Y en π als de te verklaren grootheden.' },
+        { text: 'De reële rente', correct: false, explanation: 'Rentewijziging is het middel, niet het onderwerp van de uitleg.' },
+        { text: 'De overheid', correct: false, explanation: 'De centrale bank handelt, maar de vraag gaat over Y en π.' }
+      ],
+      subQuestions: [
+        { text: 'Wat gebeurt er met Y op korte termijn?', correct: true, explanation: 'Expliciet gevraagd.' },
+        { text: 'Wat gebeurt er met π op korte termijn?', correct: true, explanation: 'Expliciet gevraagd.' },
+        { text: 'Wat gebeurt er op middellange termijn?', correct: true, explanation: 'Expliciet gevraagd.' },
+        { text: 'Wat is de output-gap?', correct: false, explanation: 'Dat is een tussenstap, geen deelvraag.' },
+        { text: 'Hoe werkt een open economie?', correct: false, explanation: 'Niet gevraagd in deze vraag.' }
+      ],
+      answerTypeOptions: [
+        { text: 'Redenering via het model, opgesplitst in kort + middellang', correct: true, explanation: 'Twee tijdshorizonnen, beide verklaren met IS-MB-GA.' },
+        { text: 'Alleen een berekening', correct: false, explanation: 'Commandowoord is "leg uit".' },
+        { text: 'Ja/nee met onderbouwing', correct: false, explanation: 'Geen bewering die getoetst wordt.' }
+      ]
+    },
+
     modelAnswer: 'Op de korte termijn: de MB-curve verschuift naar boven (hogere rente bij elk inflatieniveau). Op de IS-curve leidt de hogere rente tot minder investeringen (I) en consumptie (C) op krediet, waardoor de output Y daalt. Door de lagere Y ontstaat een negatievere output gap: de druk op de arbeidsmarkt en grondstoffenmarkt neemt af. Via de GA-curve (Phillips-curve) daalt hierdoor ook de inflatie π. Op middellange termijn keert Y terug naar het natuurlijke niveau, terwijl de inflatie op het nieuwe, lagere niveau stabiliseert — het doel van de centrale bank.',
     keyPoints: ['MB-curve omhoog', 'IS: hogere rente → lagere C en I → lagere Y', 'negatievere output gap → minder druk', 'GA: lagere Y → lagere π', 'middellange termijn: Y terug naar natuurlijk niveau, π lager']
   },
@@ -160,6 +264,31 @@ Zekura baseert de premie op het gemiddelde risico van de populatie (15% × €80
       { text: 'Externaliteiten', correct: false, explanation: 'Geen kosten die op derden afgewenteld worden.' },
       { text: 'Speltheorie', correct: false, explanation: 'Geen strategische interactie tussen spelers.' }
     ],
+
+    questionBreakdown: {
+      commandOptions: [
+        { text: 'Leg uit', correct: true, explanation: 'Je moet een begrip benoemen én het mechanisme uitleggen.' },
+        { text: 'Bereken', correct: false, explanation: 'Er wordt geen getal gevraagd.' },
+        { text: 'Beoordeel', correct: false, explanation: 'Geen bewering om te toetsen.' },
+        { text: 'Noem', correct: false, explanation: 'Alleen het begrip noemen is niet genoeg — je moet ook uitleggen waarom de markt instort.' }
+      ],
+      subjectOptions: [
+        { text: 'Het economisch verschijnsel + de verzekeringsmarkt', correct: true, explanation: 'De vraag vraagt naar het verschijnsel én het marktgevolg.' },
+        { text: 'Zekura als bedrijf', correct: false, explanation: 'Zekura is context, niet het onderwerp van de uitleg.' },
+        { text: 'De fietsendief', correct: false, explanation: 'Speelt geen rol in de vraag.' }
+      ],
+      subQuestions: [
+        { text: 'Welk economisch verschijnsel speelt hier?', correct: true, explanation: 'Eerste deel van de vraag.' },
+        { text: 'Waarom kan de verzekeringsmarkt hierdoor instorten?', correct: true, explanation: 'Tweede deel, ná "en waarom...".' },
+        { text: 'Hoe hoog is de juiste premie?', correct: false, explanation: 'Wordt niet gevraagd.' },
+        { text: 'Wie is verantwoordelijk voor diefstal?', correct: false, explanation: 'Niet relevant voor de vraag.' }
+      ],
+      answerTypeOptions: [
+        { text: 'Begrip benoemen + mechanisme uitleggen', correct: true, explanation: 'Twee delen: naam van het verschijnsel + hoe het tot instorten leidt.' },
+        { text: 'Alleen een berekening', correct: false, explanation: 'Commandowoord is "leg uit".' },
+        { text: 'Ja/nee met onderbouwing', correct: false, explanation: 'Geen bewering die getoetst wordt.' }
+      ]
+    },
 
     modelAnswer: 'Er is sprake van averechtse selectie, veroorzaakt door asymmetrische informatie. De verzekeraar kan voorzichtige en roekeloze fietsers niet onderscheiden en zet daarom de premie op het gemiddelde. Voor voorzichtige fietsers (risico 5%) is deze premie te hoog — zij haken af. Roekeloze fietsers (risico 25%) blijven, want voor hen is de premie juist gunstig. Het risicoprofiel van de verzekerden wordt steeds ongunstiger, de premie moet verder omhoog, waardoor nog meer voorzichtige mensen afhaken. Deze spiraal kan de markt laten instorten: uiteindelijk is verzekering niet meer rendabel aan te bieden.',
     keyPoints: ['averechtse selectie', 'asymmetrische informatie', 'voorzichtige klanten haken af', 'premie moet steeds omhoog', 'spiraal → markt kan instorten']
@@ -1156,8 +1285,13 @@ function OpenReview({ question, userAnswer, onRate, currentRating }) {
 
 function DecodeView({ session, onFinish }) {
   const [index, setIndex] = useState(0);
-  // step: 1 = lezen + gegevens identificeren, 2 = concept identificeren, 3 = antwoorden, 4 = feedback
+  // step: 1 = ontleed de vraag, 2 = feedback ontleding + gegevens selecteren,
+  // 3 = feedback gegevens + concept selecteren, 4 = feedback concept + antwoord, 5 = modelantwoord
   const [step, setStep] = useState(1);
+  const [selectedCommand, setSelectedCommand] = useState(null);
+  const [selectedSubject, setSelectedSubject] = useState(null);
+  const [selectedSubQuestions, setSelectedSubQuestions] = useState([]);
+  const [selectedAnswerType, setSelectedAnswerType] = useState(null);
   const [selectedData, setSelectedData] = useState([]);
   const [selectedConcepts, setSelectedConcepts] = useState([]);
   const [userAnswer, setUserAnswer] = useState('');
@@ -1166,6 +1300,11 @@ function DecodeView({ session, onFinish }) {
 
   const q = session.questions[index];
   if (!q) return null;
+  const br = q.questionBreakdown;
+
+  const toggleSubQuestion = (idx) => {
+    setSelectedSubQuestions(prev => prev.includes(idx) ? prev.filter(i => i !== idx) : [...prev, idx]);
+  };
 
   const toggleData = (idx) => {
     setSelectedData(prev => prev.includes(idx) ? prev.filter(i => i !== idx) : [...prev, idx]);
@@ -1175,12 +1314,17 @@ function DecodeView({ session, onFinish }) {
     setSelectedConcepts(prev => prev.includes(idx) ? prev.filter(i => i !== idx) : [...prev, idx]);
   };
 
+  const breakdownComplete =
+    selectedCommand !== null &&
+    selectedSubject !== null &&
+    selectedSubQuestions.length > 0 &&
+    selectedAnswerType !== null;
+
   const handleNext = () => {
-    if (step < 4) {
+    if (step < 5) {
       setStep(step + 1);
       return;
     }
-    // Finaliseer deze vraag, volgende of klaar
     const finalRating = selfRating ?? 3;
     const newResults = [...results, { questionId: q.id, quality: finalRating }];
     setResults(newResults);
@@ -1190,6 +1334,10 @@ function DecodeView({ session, onFinish }) {
     } else {
       setIndex(index + 1);
       setStep(1);
+      setSelectedCommand(null);
+      setSelectedSubject(null);
+      setSelectedSubQuestions([]);
+      setSelectedAnswerType(null);
       setSelectedData([]);
       setSelectedConcepts([]);
       setUserAnswer('');
@@ -1197,23 +1345,24 @@ function DecodeView({ session, onFinish }) {
     }
   };
 
-  // Score stap 1: hoeveel juist geselecteerd
   const correctDataIndices = q.dataItems.map((d, i) => d.relevant ? i : null).filter(i => i !== null);
   const correctConceptIndices = q.concepts.map((c, i) => c.correct ? i : null).filter(i => i !== null);
 
-  const dataScore = step >= 2 ? {
+  const dataScore = step >= 3 ? {
     correctSelected: selectedData.filter(i => q.dataItems[i].relevant).length,
     incorrectSelected: selectedData.filter(i => !q.dataItems[i].relevant).length,
     missed: correctDataIndices.filter(i => !selectedData.includes(i)).length,
     total: correctDataIndices.length
   } : null;
 
-  const conceptScore = step >= 3 ? {
+  const conceptScore = step >= 4 ? {
     correctSelected: selectedConcepts.filter(i => q.concepts[i].correct).length,
     incorrectSelected: selectedConcepts.filter(i => !q.concepts[i].correct).length,
     missed: correctConceptIndices.filter(i => !selectedConcepts.includes(i)).length,
     total: correctConceptIndices.length
   } : null;
+
+  const correctSubQuestionsText = br ? br.subQuestions.filter(s => s.correct).map(s => s.text) : [];
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#f5f1e8', fontFamily: 'Georgia, serif' }}>
@@ -1228,13 +1377,13 @@ function DecodeView({ session, onFinish }) {
             Opgave {index + 1} / {session.questions.length}
           </div>
           <div className="text-xs uppercase tracking-widest" style={{ color: '#c9a961' }}>
-            Stap {step} van 4
+            Stap {step} van 5
           </div>
         </div>
 
         {/* Progressbalk per stap */}
         <div className="flex gap-2 mb-8">
-          {[1, 2, 3, 4].map(s => (
+          {[1, 2, 3, 4, 5].map(s => (
             <div key={s} className="flex-1 h-1" style={{
               backgroundColor: step >= s ? '#1a3a2e' : '#e0d8c7'
             }} />
@@ -1263,18 +1412,295 @@ function DecodeView({ session, onFinish }) {
           <p className="text-lg leading-relaxed font-bold" style={{ color: '#1a3a2e' }}>{q.question}</p>
         </div>
 
-        {/* STAP 1: Gegevens identificeren */}
-        {step === 1 && (
+        {/* STAP 1: Ontleed de vraag */}
+        {step === 1 && br && (
           <div>
+            <div className="bg-white p-6 mb-4 border-2" style={{ borderColor: '#1a3a2e' }}>
+              <div className="flex items-center gap-2 mb-2">
+                <HelpCircle size={18} style={{ color: '#1a3a2e' }} />
+                <h3 className="font-bold uppercase tracking-wider text-sm" style={{ color: '#1a3a2e' }}>
+                  Stap 1 — Ontleed de vraag
+                </h3>
+              </div>
+              <p className="text-sm" style={{ color: '#4a4a4a' }}>
+                Voordat je naar de casus gaat: wát vraagt deze vraag eigenlijk van je? De theorie ken je. Maar eerst moet glashelder zijn wat er gevraagd wordt — anders zoek je data en concepten bij de verkeerde vraag.
+              </p>
+            </div>
+
+            {/* A — Commandowoord */}
+            <div className="bg-white p-6 mb-4 border-2" style={{ borderColor: '#1a3a2e' }}>
+              <h4 className="font-bold uppercase tracking-wider text-sm mb-1" style={{ color: '#1a3a2e' }}>
+                A · Commandowoord
+              </h4>
+              <p className="text-xs mb-3" style={{ color: '#6b6b6b' }}>
+                Welk opdrachtwoord gebruikt de vraag? Dit bepaalt het type antwoord.
+              </p>
+              <div className="space-y-2">
+                {br.commandOptions.map((opt, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSelectedCommand(i)}
+                    className="w-full text-left p-3 border-2 transition-all flex items-start gap-3"
+                    style={{
+                      backgroundColor: selectedCommand === i ? '#e8f4ec' : 'white',
+                      borderColor: selectedCommand === i ? '#1a6b3e' : '#e0d8c7'
+                    }}
+                  >
+                    <div className="w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5" style={{
+                      borderColor: selectedCommand === i ? '#1a6b3e' : '#6b6b6b',
+                      backgroundColor: selectedCommand === i ? '#1a6b3e' : 'white'
+                    }}>
+                      {selectedCommand === i && <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'white' }} />}
+                    </div>
+                    <span className="text-sm" style={{ color: '#1a3a2e' }}>{opt.text}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* B — Hoofdactor / onderwerp */}
+            <div className="bg-white p-6 mb-4 border-2" style={{ borderColor: '#1a3a2e' }}>
+              <h4 className="font-bold uppercase tracking-wider text-sm mb-1" style={{ color: '#1a3a2e' }}>
+                B · Over wie / wat gaat de vraag?
+              </h4>
+              <p className="text-xs mb-3" style={{ color: '#6b6b6b' }}>
+                Wie of wat staat centraal in de vraag — niet de casus als geheel, maar juist dít onderwerp.
+              </p>
+              <div className="space-y-2">
+                {br.subjectOptions.map((opt, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSelectedSubject(i)}
+                    className="w-full text-left p-3 border-2 transition-all flex items-start gap-3"
+                    style={{
+                      backgroundColor: selectedSubject === i ? '#e8f4ec' : 'white',
+                      borderColor: selectedSubject === i ? '#1a6b3e' : '#e0d8c7'
+                    }}
+                  >
+                    <div className="w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5" style={{
+                      borderColor: selectedSubject === i ? '#1a6b3e' : '#6b6b6b',
+                      backgroundColor: selectedSubject === i ? '#1a6b3e' : 'white'
+                    }}>
+                      {selectedSubject === i && <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'white' }} />}
+                    </div>
+                    <span className="text-sm" style={{ color: '#1a3a2e' }}>{opt.text}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* C — Deelvragen */}
+            <div className="bg-white p-6 mb-4 border-2" style={{ borderColor: '#1a3a2e' }}>
+              <h4 className="font-bold uppercase tracking-wider text-sm mb-1" style={{ color: '#1a3a2e' }}>
+                C · Welke deelvragen zitten er in?
+              </h4>
+              <p className="text-xs mb-3" style={{ color: '#6b6b6b' }}>
+                Een vraag bevat vaak méér dan één deelvraag. Selecteer alles wat expliciet gevraagd wordt (meerdere kunnen juist zijn).
+              </p>
+              <div className="space-y-2">
+                {br.subQuestions.map((opt, i) => (
+                  <button
+                    key={i}
+                    onClick={() => toggleSubQuestion(i)}
+                    className="w-full text-left p-3 border-2 transition-all flex items-start gap-3"
+                    style={{
+                      backgroundColor: selectedSubQuestions.includes(i) ? '#e8f4ec' : 'white',
+                      borderColor: selectedSubQuestions.includes(i) ? '#1a6b3e' : '#e0d8c7'
+                    }}
+                  >
+                    <div className="w-5 h-5 border-2 flex items-center justify-center flex-shrink-0 mt-0.5" style={{
+                      borderColor: selectedSubQuestions.includes(i) ? '#1a6b3e' : '#6b6b6b',
+                      backgroundColor: selectedSubQuestions.includes(i) ? '#1a6b3e' : 'white'
+                    }}>
+                      {selectedSubQuestions.includes(i) && <Check size={14} color="white" />}
+                    </div>
+                    <span className="text-sm" style={{ color: '#1a3a2e' }}>{opt.text}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* D — Antwoordtype */}
+            <div className="bg-white p-6 mb-4 border-2" style={{ borderColor: '#1a3a2e' }}>
+              <h4 className="font-bold uppercase tracking-wider text-sm mb-1" style={{ color: '#1a3a2e' }}>
+                D · Welk type antwoord verwacht de vraag?
+              </h4>
+              <p className="text-xs mb-3" style={{ color: '#6b6b6b' }}>
+                Wat voor vorm moet je eindantwoord hebben?
+              </p>
+              <div className="space-y-2">
+                {br.answerTypeOptions.map((opt, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setSelectedAnswerType(i)}
+                    className="w-full text-left p-3 border-2 transition-all flex items-start gap-3"
+                    style={{
+                      backgroundColor: selectedAnswerType === i ? '#e8f4ec' : 'white',
+                      borderColor: selectedAnswerType === i ? '#1a6b3e' : '#e0d8c7'
+                    }}
+                  >
+                    <div className="w-5 h-5 rounded-full border-2 flex items-center justify-center flex-shrink-0 mt-0.5" style={{
+                      borderColor: selectedAnswerType === i ? '#1a6b3e' : '#6b6b6b',
+                      backgroundColor: selectedAnswerType === i ? '#1a6b3e' : 'white'
+                    }}>
+                      {selectedAnswerType === i && <div className="w-2 h-2 rounded-full" style={{ backgroundColor: 'white' }} />}
+                    </div>
+                    <span className="text-sm" style={{ color: '#1a3a2e' }}>{opt.text}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <button
+              onClick={handleNext}
+              disabled={!breakdownComplete}
+              className="w-full py-4 font-bold uppercase tracking-wider disabled:opacity-40 disabled:cursor-not-allowed"
+              style={{ backgroundColor: '#1a3a2e', color: '#f5f1e8' }}
+            >
+              Controleer ontleding → stap 2
+            </button>
+          </div>
+        )}
+
+        {/* STAP 2: Feedback op ontleding + gegevens selecteren */}
+        {step === 2 && br && (
+          <div>
+            {/* Feedback op ontleding */}
+            <div className="bg-white p-6 mb-4 border-2" style={{ borderColor: '#1a3a2e' }}>
+              <div className="flex items-center gap-2 mb-3">
+                <Lightbulb size={18} style={{ color: '#c9a961' }} />
+                <h3 className="font-bold uppercase tracking-wider text-sm" style={{ color: '#1a3a2e' }}>
+                  Feedback op je ontleding
+                </h3>
+              </div>
+
+              {/* Commandowoord feedback */}
+              {(() => {
+                const chosen = br.commandOptions[selectedCommand];
+                const correct = br.commandOptions.find(o => o.correct);
+                const ok = chosen && chosen.correct;
+                return (
+                  <div className="mb-3 p-3 border-l-2" style={{ borderColor: ok ? '#1a6b3e' : '#a04040', backgroundColor: '#fafafa' }}>
+                    <div className="flex items-start justify-between gap-3 mb-1">
+                      <span className="text-xs uppercase tracking-widest font-bold" style={{ color: '#6b6b6b' }}>A · Commandowoord</span>
+                      <span className="text-xs font-bold uppercase whitespace-nowrap" style={{ color: ok ? '#1a6b3e' : '#a04040' }}>
+                        {ok ? 'Juist ✓' : 'Onjuist'}
+                      </span>
+                    </div>
+                    <div className="text-sm" style={{ color: '#1a3a2e' }}>
+                      Jouw keuze: <strong>{chosen?.text}</strong>
+                      {!ok && correct && <> · Juist is: <strong>{correct.text}</strong></>}
+                    </div>
+                    <p className="text-xs mt-1" style={{ color: '#6b6b6b' }}>
+                      {ok ? chosen.explanation : (chosen?.explanation || '') + (correct ? ' — ' + correct.explanation : '')}
+                    </p>
+                  </div>
+                );
+              })()}
+
+              {/* Subject feedback */}
+              {(() => {
+                const chosen = br.subjectOptions[selectedSubject];
+                const correct = br.subjectOptions.find(o => o.correct);
+                const ok = chosen && chosen.correct;
+                return (
+                  <div className="mb-3 p-3 border-l-2" style={{ borderColor: ok ? '#1a6b3e' : '#a04040', backgroundColor: '#fafafa' }}>
+                    <div className="flex items-start justify-between gap-3 mb-1">
+                      <span className="text-xs uppercase tracking-widest font-bold" style={{ color: '#6b6b6b' }}>B · Onderwerp</span>
+                      <span className="text-xs font-bold uppercase whitespace-nowrap" style={{ color: ok ? '#1a6b3e' : '#a04040' }}>
+                        {ok ? 'Juist ✓' : 'Onjuist'}
+                      </span>
+                    </div>
+                    <div className="text-sm" style={{ color: '#1a3a2e' }}>
+                      Jouw keuze: <strong>{chosen?.text}</strong>
+                      {!ok && correct && <> · Juist is: <strong>{correct.text}</strong></>}
+                    </div>
+                    <p className="text-xs mt-1" style={{ color: '#6b6b6b' }}>
+                      {ok ? chosen.explanation : (chosen?.explanation || '') + (correct ? ' — ' + correct.explanation : '')}
+                    </p>
+                  </div>
+                );
+              })()}
+
+              {/* Deelvragen feedback */}
+              <div className="mb-3 p-3 border-l-2" style={{ borderColor: '#1a6b3e', backgroundColor: '#fafafa' }}>
+                <div className="flex items-start justify-between gap-3 mb-2">
+                  <span className="text-xs uppercase tracking-widest font-bold" style={{ color: '#6b6b6b' }}>C · Deelvragen</span>
+                </div>
+                <div className="space-y-1 text-sm">
+                  {br.subQuestions.map((sq, i) => {
+                    const wasSelected = selectedSubQuestions.includes(i);
+                    const isCorrect = sq.correct;
+                    let label = '';
+                    let color = '#6b6b6b';
+                    if (wasSelected && isCorrect) { label = 'Juist ✓'; color = '#1a6b3e'; }
+                    else if (wasSelected && !isCorrect) { label = 'Onnodig'; color = '#a04040'; }
+                    else if (!wasSelected && isCorrect) { label = 'Gemist'; color = '#c9a961'; }
+                    else return null;
+                    return (
+                      <div key={i} className="flex items-start justify-between gap-3">
+                        <div className="flex-1">
+                          <div style={{ color: '#1a3a2e' }}>{sq.text}</div>
+                          <div className="text-xs" style={{ color: '#6b6b6b' }}>{sq.explanation}</div>
+                        </div>
+                        <span className="text-xs font-bold uppercase whitespace-nowrap" style={{ color }}>{label}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Antwoordtype feedback */}
+              {(() => {
+                const chosen = br.answerTypeOptions[selectedAnswerType];
+                const correct = br.answerTypeOptions.find(o => o.correct);
+                const ok = chosen && chosen.correct;
+                return (
+                  <div className="mb-3 p-3 border-l-2" style={{ borderColor: ok ? '#1a6b3e' : '#a04040', backgroundColor: '#fafafa' }}>
+                    <div className="flex items-start justify-between gap-3 mb-1">
+                      <span className="text-xs uppercase tracking-widest font-bold" style={{ color: '#6b6b6b' }}>D · Antwoordtype</span>
+                      <span className="text-xs font-bold uppercase whitespace-nowrap" style={{ color: ok ? '#1a6b3e' : '#a04040' }}>
+                        {ok ? 'Juist ✓' : 'Onjuist'}
+                      </span>
+                    </div>
+                    <div className="text-sm" style={{ color: '#1a3a2e' }}>
+                      Jouw keuze: <strong>{chosen?.text}</strong>
+                      {!ok && correct && <> · Juist is: <strong>{correct.text}</strong></>}
+                    </div>
+                    <p className="text-xs mt-1" style={{ color: '#6b6b6b' }}>
+                      {ok ? chosen.explanation : (chosen?.explanation || '') + (correct ? ' — ' + correct.explanation : '')}
+                    </p>
+                  </div>
+                );
+              })()}
+
+              {/* Samenvatting: brug naar gegevens-selectie */}
+              <div className="mt-4 p-4 border-l-4" style={{ borderColor: '#c9a961', backgroundColor: '#fdf9ef' }}>
+                <div className="text-xs uppercase tracking-widest mb-2 font-bold" style={{ color: '#c9a961' }}>
+                  Wat de vraag dus vraagt
+                </div>
+                <p className="text-sm mb-1" style={{ color: '#1a3a2e' }}>
+                  De vraag vraagt je om:
+                </p>
+                <ul className="text-sm list-disc ml-5 mb-2" style={{ color: '#1a3a2e' }}>
+                  {correctSubQuestionsText.map((t, i) => <li key={i}>{t}</li>)}
+                </ul>
+                <p className="text-xs" style={{ color: '#6b6b6b' }}>
+                  Bij het kiezen van gegevens hierna: selecteer alléén wat je nodig hebt om déze deelvragen te beantwoorden.
+                </p>
+              </div>
+            </div>
+
+            {/* Gegevens selecteren */}
             <div className="bg-white p-6 mb-4 border-2" style={{ borderColor: '#1a3a2e' }}>
               <div className="flex items-center gap-2 mb-2">
                 <Search size={18} style={{ color: '#1a3a2e' }} />
                 <h3 className="font-bold uppercase tracking-wider text-sm" style={{ color: '#1a3a2e' }}>
-                  Stap 1 — Welke gegevens zijn relevant?
+                  Stap 2 — Welke gegevens zijn relevant?
                 </h3>
               </div>
               <p className="text-sm mb-4" style={{ color: '#4a4a4a' }}>
-                Lees de casus en de vraag. Selecteer alle gegevens die je nodig hebt om deze <em>specifieke</em> vraag te beantwoorden. Niet alle informatie in de casus is relevant!
+                Selecteer alle gegevens die je nodig hebt om de deelvragen hierboven te beantwoorden. Niet alle informatie in de casus is relevant.
               </p>
 
               <div className="space-y-2">
@@ -1306,13 +1732,13 @@ function DecodeView({ session, onFinish }) {
               className="w-full py-4 font-bold uppercase tracking-wider disabled:opacity-40 disabled:cursor-not-allowed"
               style={{ backgroundColor: '#1a3a2e', color: '#f5f1e8' }}
             >
-              Controleer selectie → stap 2
+              Controleer selectie → stap 3
             </button>
           </div>
         )}
 
-        {/* STAP 2: Feedback op gegevens + concept selecteren */}
-        {step === 2 && (
+        {/* STAP 3: Feedback op gegevens + concept selecteren */}
+        {step === 3 && (
           <div>
             {/* Feedback op gegevens */}
             <div className="bg-white p-6 mb-4 border-2" style={{ borderColor: '#1a3a2e' }}>
@@ -1344,30 +1770,45 @@ function DecodeView({ session, onFinish }) {
                   const isCorrect = item.relevant;
                   let label = '';
                   let color = '#6b6b6b';
+                  let bg = '#fafafa';
                   if (wasSelected && isCorrect) { label = 'Juist ✓'; color = '#1a6b3e'; }
-                  else if (wasSelected && !isCorrect) { label = 'Onnodig'; color = '#a04040'; }
+                  else if (wasSelected && !isCorrect) { label = 'Onnodig'; color = '#a04040'; bg = '#fce8e8'; }
                   else if (!wasSelected && isCorrect) { label = 'Gemist'; color = '#c9a961'; }
-                  else return null; // niet geselecteerd en niet relevant: sla over
+                  else return null;
+
+                  const isOnnodig = wasSelected && !isCorrect;
 
                   return (
-                    <div key={i} className="p-3 border-l-2" style={{ borderColor: color, backgroundColor: '#fafafa' }}>
+                    <div key={i} className="p-3 border-l-2" style={{ borderColor: color, backgroundColor: bg }}>
                       <div className="flex items-start justify-between gap-3 mb-1">
                         <span style={{ color: '#1a3a2e' }}>{item.text}</span>
                         <span className="text-xs font-bold uppercase whitespace-nowrap" style={{ color }}>{label}</span>
                       </div>
-                      <p className="text-xs" style={{ color: '#6b6b6b' }}>{item.explanation}</p>
+                      {isOnnodig ? (
+                        <div className="mt-2 pt-2 border-t" style={{ borderColor: '#f0c8c8' }}>
+                          <div className="text-xs font-bold uppercase mb-1" style={{ color: '#a04040' }}>Waarom onnodig?</div>
+                          <p className="text-sm" style={{ color: '#1a3a2e' }}>{item.explanation}</p>
+                          {correctSubQuestionsText.length > 0 && (
+                            <p className="text-xs mt-1" style={{ color: '#6b6b6b' }}>
+                              Jouw deelvragen waren: <em>{correctSubQuestionsText.join(' · ')}</em>. Dit gegeven helpt je niet bij die deelvragen.
+                            </p>
+                          )}
+                        </div>
+                      ) : (
+                        <p className="text-xs" style={{ color: '#6b6b6b' }}>{item.explanation}</p>
+                      )}
                     </div>
                   );
                 })}
               </div>
             </div>
 
-            {/* Stap 2: concept kiezen */}
+            {/* Concept kiezen */}
             <div className="bg-white p-6 mb-4 border-2" style={{ borderColor: '#1a3a2e' }}>
               <div className="flex items-center gap-2 mb-2">
                 <Target size={18} style={{ color: '#1a3a2e' }} />
                 <h3 className="font-bold uppercase tracking-wider text-sm" style={{ color: '#1a3a2e' }}>
-                  Stap 2 — Welk(e) concept(en) is/zijn relevant?
+                  Stap 3 — Welk(e) concept(en) is/zijn relevant?
                 </h3>
               </div>
               <p className="text-sm mb-4" style={{ color: '#4a4a4a' }}>
@@ -1403,13 +1844,13 @@ function DecodeView({ session, onFinish }) {
               className="w-full py-4 font-bold uppercase tracking-wider disabled:opacity-40 disabled:cursor-not-allowed"
               style={{ backgroundColor: '#1a3a2e', color: '#f5f1e8' }}
             >
-              Controleer selectie → stap 3
+              Controleer selectie → stap 4
             </button>
           </div>
         )}
 
-        {/* STAP 3: Feedback op concept + antwoord geven */}
-        {step === 3 && (
+        {/* STAP 4: Feedback op concept + antwoord geven */}
+        {step === 4 && (
           <div>
             {/* Feedback op concept */}
             <div className="bg-white p-6 mb-4 border-2" style={{ borderColor: '#1a3a2e' }}>
@@ -1462,7 +1903,7 @@ function DecodeView({ session, onFinish }) {
             {/* Antwoord geven */}
             <div className="bg-white p-6 mb-4 border-2" style={{ borderColor: '#1a3a2e' }}>
               <h3 className="font-bold uppercase tracking-wider text-sm mb-2" style={{ color: '#1a3a2e' }}>
-                Stap 3 — Formuleer je antwoord
+                Stap 4 — Formuleer je antwoord
               </h3>
               <p className="text-sm mb-4" style={{ color: '#4a4a4a' }}>
                 Nu je weet welke gegevens en welk concept relevant zijn, formuleer je antwoord op de vraag.
@@ -1487,8 +1928,8 @@ function DecodeView({ session, onFinish }) {
           </div>
         )}
 
-        {/* STAP 4: Modelantwoord en zelfbeoordeling */}
-        {step === 4 && (
+        {/* STAP 5: Modelantwoord en zelfbeoordeling */}
+        {step === 5 && (
           <div>
             <div className="bg-white p-6 mb-4 border-2" style={{ borderColor: '#e0d8c7' }}>
               <div className="text-xs uppercase tracking-widest mb-1" style={{ color: '#6b6b6b' }}>Jouw antwoord</div>
